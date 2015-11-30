@@ -1,0 +1,68 @@
+<div id="main">			
+	<section id="join_section">
+		<h1>회원정보 수정</h1> 
+		<form name="join_form">
+			<img src="image/member/seulbinim@gmail.com.jpg" alt="">
+			<table id="join_form_table">
+				<tr>
+					<th>이메일</th>
+					<td>uzoolove@gmail.com</td>
+				</tr>
+				<tr>
+					<th><label for="profile">프로필 이미지</label></th>
+					<td>
+						<input type="file" accept="*.jpg" id="profile">
+						<progress>0%</progress>
+					</td>
+				</tr>
+				<tr>
+					<th><label for="password_old">비밀번호</label></th>
+					<td><input type="password" id="password_old" name="oldPassword" required></td>
+				</tr>
+				<tr>
+					<th><label for="password">새 비밀번호</label></th>
+					<td><input type="password" id="password" name="password"></td>
+				</tr>
+				<tr>
+					<th><label for="password2">새 비밀번호확인</label></th>
+					<td><input type="password" id="password2"></td>
+				</tr>
+			</table>
+			<div class="btn_div"><button type="submit">정보 수정</button></div>
+		</form>
+	</section>
+	<section id="my_coupon_section">
+		<h1>내가 구매한 쿠폰 리스트</h1>    
+		<!-- 구매한 쿠폰 목록 출력 영역 -->
+
+		<article class="coupon_preview">
+			<h1 tabindex="0"><a href="/" title="쿠폰 상세보기로">토속촌 삼계탕</a></h1>
+			<img class="coupon_list_image" src="image/photo/coupon_03.jpg" alt="">
+			<time datetime="2015-06-14">2015년 6월 14일</time>
+			<form>
+				평가: <input name="satisfaction" type="range" min="1" max="5" value="5" onchange="output.value = this.value"><output name="output">5</output>
+				<textarea name="content" rows="4" cols="27" placeholder="후기를 입력하세요."> </textarea><br>
+				<input type="submit" value="작성">
+			</form>
+
+		</article>
+
+		<article class="coupon_preview">
+			<h1 tabindex="0"><a href="/" title="쿠폰 상세보기로">커피통 와플</a></h1>
+			<img class="coupon_list_image" src="image/photo/coupon_02.jpg" alt="">
+			<time datetime="2015-03-10">2015년 3월 10일</time>
+			<p>와플의 굽기도 적당하고 함께 나온 아이스 크림은 너무 맛있었다눈. 일산에 있는 맛집으로 콕 찜해두어야겠다.<p>
+			<p>★★★★☆<p>					
+		</article>
+
+		<article class="coupon_preview">
+			<h1 tabindex="0"><a href="/" title="쿠폰 상세보기로">평양냉면</a></h1>
+			<img class="coupon_list_image" src="image/photo/coupon_01.jpg" alt="">
+			<time datetime="2014-08-19">2014년 8월 19일</time>
+			<p>기대를 가지고 찾아갔던 평양냉명. 맛은 그냥 So So...한번은 몰라도 두번은 생각날 맛은 아닌것 같다.<p>
+			<p>★★★☆☆<p>					
+		</article>
+
+
+	</section>
+</div>
