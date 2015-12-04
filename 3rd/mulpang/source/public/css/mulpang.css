@@ -1,0 +1,1813 @@
+/*쿠폰 검색(메인)===================================================================*/
+#today #search {/*쿠폰 검색영역*/
+	position: absolute;
+	top: 40px;
+	right:10px;
+	z-index: 1;
+	background: #8b704e url(svg/search_color.svg) 130px -15px no-repeat;
+	background-size: 85% 85%;
+	-webkit-background-size: 85% 85%;
+	-moz-background-size: 85% 85%;
+	width: 260px;
+	height: 120px;
+	padding: 15px 20px;
+	border-radius: 10px;
+}
+#today #search h1 {/*쿠폰 검색영역 제목*/
+	width: 120px;
+	height: 32px;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+#today #search h1:before {/*쿠폰 검색영역 제목 영어로 변경*/
+	content: "Coupon Search ";
+	font-family: akzidenz;
+	color: #e3d7af;
+	font-size: 140%;
+	line-height: 32px;
+}
+#today #search form {/*쿠폰 검색 폼*/
+	width: 225px;
+	padding-right: 55px;
+	position: relative;
+	line-height: 25px;
+}
+#today #search label {
+	color: #dcd4ca;
+	font-weight: bold;
+	font-size: 90%;
+	letter-spacing: -1px;
+	display: inline-block;
+	width: 38px;
+	background: url(svg/dot.svg) 0 10px no-repeat;
+	padding-left: 8px;
+}
+#today #search select, #today #search input[type="search"] {
+	width: 148px;
+}
+#today #search input[type="submit"] {
+	position: absolute;
+	top: 2px;
+	right: 15px;
+	background: #53432f url(svg/search.svg) center 15px no-repeat;
+	border: #463826 solid 1px;
+	border-radius: 2px;
+	box-shadow: 1px 1px 1px #765f42;
+	width: 60px;
+	text-align: center;
+	padding-top: 20px;
+	height: 70px;
+	color: #fff;
+	font-weight: bold;
+}
+/*===================================================================쿠폰 검색(메인)*/
+
+/*쿠폰 검색(모두)===================================================================*/
+#all #search {/*쿠폰 검색영역*/
+	background: #8b704e;
+	border-radius: 5px;
+	line-height: 40px;
+	margin-bottom: 10px;
+}
+#all #search h1 {/*쿠폰 검색영역 제목*/
+	width: 80px;
+	height: 40px;
+	overflow: hidden;
+	margin-bottom: 10px;
+	float: left;
+	padding-left: 25px;
+}
+#all #search h1:before {/*쿠폰 검색영역 제목 영어로 변경*/
+	content: "Coupon Search ";
+	font-family: akzidenz;
+	color: #e3d7af;
+	font-size: 140%;
+	line-height: 40px;
+}
+#all #search label {
+	color: #dcd4ca;
+	font-weight: bold;
+	font-size: 90%;
+	letter-spacing: -1px;
+	display: inline-block;
+	padding-right: 5px;
+	background: url(svg/dot.svg) 0 16px no-repeat;
+	padding-left: 8px;
+	margin-left: 10px;
+}
+#all #search input[type="submit"] {
+	background: #53432f url(svg/search.svg) 10px center no-repeat;
+	border: #463826 solid 1px;
+	border-radius: 2px;
+	box-shadow: 1px 1px 1px #765f42;
+	padding: 0 10px 0 30px;
+	height: 22px;
+	color: #fff;
+	font-weight: bold;
+}
+/*===================================================================쿠폰 검색(모두)*/
+
+/*쿠폰 검색(숨기기)===================================================================*/
+
+#today #location_map, #today #order,
+#location #search, #location #order,
+#best #search, #best #location_map, #best #order,
+#join #search, #join #location_map, #join #order,
+#mypage #search, #mypage #location_map, #mypage #order{
+	display: none;
+}
+
+/*===================================================================쿠폰 검색(숨기기)*/
+
+/*쿠폰리스트 공통========================================================*/
+#coupon {/*쿠폰 리스트 영역*/
+	position: relative;
+}
+#time {
+	font-family: akzidenz;
+	font-size: 28px;
+	line-height:1.6;
+	color: #9e9286;
+	padding-left:10px;
+}
+#order {/*리스트 정렬순서*/
+	position: absolute;
+	top: 0px;
+	right: 10px;
+	z-index: 100;
+	background: #7d8b4e;
+	line-height: 40px;
+	padding: 0 30px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+#order label {
+	background: transparent;
+	margin-left: 0;
+	padding-left: 0;
+	color: #fff;
+}
+#order button {
+	background: #42492a;
+	background: -webkit-gradient(linear, left top, left bottom, from(#5d6349), to(#42492a));
+	background: linear-gradient(top, #5d6349, #42492a);
+	border: #363c22 solid 1px;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 2px;
+	height: 22px;
+	padding: 0 10px;
+	font-size: 12px;
+}
+/*========================================================쿠폰리스트 공통*/
+.slide .coupon_off {/* 쿠폰이 슬라이드에서 뒤에 숨겨져 있을때 화면에서 보이지 않게 함 */
+	display: none;
+}
+/*쿠폰리스트 슬라이드 형식===============================================*/
+.slide {
+	-webkit-transform-style: perserve-3d;
+	min-height: 650px;
+	background: url(svg/mainContent_logo1_text.svg) 0 320px no-repeat,  url(svg/mainContent_logo1.svg) 0 320px no-repeat,  url(svg/mainContent_logo2_text.svg) 530px 320px no-repeat,  url(svg/mainContent_logo2.svg) 530px 320px no-repeat;
+}
+.slide .preview {/*쿠폰 별 영역 공통*/
+	position: absolute;
+	background-color: #fff;
+	border: #a59b8c solid 1px;
+	padding: 4px;
+	overflow: hidden;
+}
+/*쿠폰리스트 슬라이드 미리 보기===============================================*/
+.slide .preview.p1 {/*첫번째 쿠폰 영역*/
+	top: 40px;
+	left: 0px;
+	width: 340px;
+	height: 260px;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+.slide .preview.p2 {/*두번째 쿠폰 영역*/
+	top: 40px;
+	left: 350px;
+	width: 300px;
+	height: 260px;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+.slide .preview.p3 {/*세번째 쿠폰 영역*/
+	top: 200px;
+	left:680px;
+	width: 280px;
+	height: 270px;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+.slide .preview.p4 {/*네번째 쿠폰 영역*/
+	top: 320px;
+	left: 180px;
+	width: 340px;
+	height: 330px;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+.slide .preview.p5 {/*다섯번째 쿠폰 영역*/
+	top: 490px;
+	left: 530px;
+	width: 260px;
+	height: 160px;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+.slide .preview.next {/*전환 효과를 위한 다음쿠폰 설정*/
+	-webkit-transform: rotateY(90deg) translateZ(150px);
+	transform: rotateY(90deg) translateZ(150px);
+	opacity: 0;
+	transition: all 0.5s;
+}
+.slide .preview.act {/*전환 효과를 위한 이전쿠폰 설정*/
+	-webkit-transform: rotateY(0deg) translateZ(0px);
+	transform: rotateY(0deg) translateZ(0px);
+	opacity: 1;
+	transition: all 0.5s;
+}
+.slide .preview.pre {/*전환 효과를 위한 이전쿠폰 설정*/
+	-webkit-transform: rotateY(-90deg) translateZ(150px);
+	transform: rotateY(-90deg) translateZ(150px);
+	opacity: 0;
+	transition: all 0.5s;
+}
+.slide .preview:hover, .slide .preview:focus {
+	cursor: pointer;
+	border: #eb840c solid 5px;
+}
+.slide .preview {/*쿠폰 제목*/
+	z-index: 10;
+}
+.slide .preview>h1 {/*쿠폰 제목*/
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background: rgba(0,0,0,0.3);
+	width: 100%;
+	padding-left: 10px;
+	padding-top: 5px;
+	border: #fff solid 4px;
+	border-top: none;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	height: 50px;
+	color: #fff;
+	font-size: 16px;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}
+.slide .list_img {/*미리보기 또는 리스트 상태의 대표 이미지*/
+	width: 100%;
+	height: 100%;
+}
+.slide .detail_img {/*미리보기 또는 리스트 상태의 대표 이미지*/
+	display: block;
+}
+
+.slide .content {/*쿠폰 상세내용 설명 영역*/
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 55px;
+	border: #fff solid 4px;
+	border-top: none;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.slide .content>h1 {/*쿠폰 콘텐츠 제목*/
+	position: absolute;
+	width: 0;
+	height: 0;
+	font-size: 0;
+	overflow: hidden;
+	visibility: hidden;
+}
+.slide .preview .discount {
+	display: block;
+	position: absolute;
+	top: 30px;
+	left: 10px;
+	color: #fff;
+	font-size: 12px;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}
+.slide .discount em {
+	font-size: 14px;
+	font-weight: bold;
+	font-style: normal;
+}
+.slide .preview li:not(.discount) {
+	display: none;
+}
+.slide .preview .note {/*쿠폰 상세설명*/
+	display: none;
+}
+.slide .preview .buy{/*쿠폰 구매버튼*/
+	display: block;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	background: url(svg/buy.svg) center center no-repeat;
+	background-size: 16px 17px;
+	width: 39px;
+	padding-top: 45px;
+	height: 0;
+	overflow: hidden;
+	border-left: rgba(255,255,255,0.2) solid 1px;
+}
+.slide .preview button.btn_add_cart {/*관심쿠폰 등록버튼 구매버튼*/
+	position: absolute;
+	right: 45px;
+	bottom: 2px;
+	background: url(svg/cart.svg) center center no-repeat;
+	background-size: 22px 22px;
+	width: 39px;
+	padding-top: 50px;
+	height: 0;
+	overflow: hidden;
+	border-left: rgba(255,255,255,0.2) solid 1px;/*display:none;*/
+}
+.slide .preview .btn_close_coupon_detail {/*쿠폰 상세보기*/
+	display: none;
+}
+/*상품이 없는 블록===================================================================*/
+.slide .no_content {/*상품이 없는 블록*/
+	background-origin: content-box;
+	background: url(svg/mainContent_logo2_text.svg) 60% center no-repeat;
+	background-color: #ccc;
+	background-size: contain;
+	cursor: default;
+	opacity: 0.6;
+}
+.slide .no_content>h1 {/*상품이 없는 블록 쿠폰 제목*/
+	border-color: transparent;
+	background: rgba(0,0,0,0.5);
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
+	opacity: 1;
+}
+.list .no_content{
+	display: none;
+}
+/*=================================================================== 상품이 없는 블록 끝*/
+.btn_pre {/*이전 버튼*/
+	position: absolute;
+	left: 10px;
+	bottom: 0;
+	background: #c1b8ae url(svg/btn_preItems.svg) center center no-repeat;
+	width: 160px;
+	padding-top: 160px;
+	height: 0;
+	overflow: hidden;
+	border-radius: 10px;
+}
+.btn_pre:hover, .btn_pre:focus {
+	transform: scale(1) rotateY(40deg);
+	-webkit-transform: scale(1) rotateY(40deg);
+	transition: all 0.3s;
+}
+.btn_next {/*다음 버튼*/
+	position: absolute;
+	right: 10px;
+	bottom: 0;
+	background: #c1b8ae url(svg/btn_nextItems.svg) center center no-repeat;
+	width: 160px;
+	padding-top: 160px;
+	height: 0;
+	overflow: hidden;
+	border-radius: 10px;
+}
+.btn_next:hover, .btn_next:focus {
+	transform: scale(1) rotateY(-40deg);
+	-webkit-transform: scale(1) rotateY(-40deg);
+	transition: all 0.3s;
+}
+/* 이전/다음 버튼 숨기기 ===============================================*/
+#all .btn_pre, #all .btn_next{
+	display:none;	
+}
+/*=============================================== 이전/다음 버튼 숨기기 */
+
+.slide .preview>div {/*쿠폰 별 추가 정보 공통*/
+	display: none;
+}
+/*===============================================쿠폰리스트 슬라이드 미리 보기*/
+
+/*쿠폰리스트 슬라이드 상세 보기===============================================*/
+.slide .detail {
+	position: absolute;
+	background: #fff;
+	top: 40px;
+	left: 0px;
+	z-index: 100;
+	width: 960px;
+	height: 650px;
+	border: none;
+	padding: 0;
+	overflow: hidden;
+	transition: all 0.5s;
+}
+.slide .detail>h1 {/*쿠폰 제목*/
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: 425px;
+	height: 280px;
+	padding: 25px;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background: rgba(0,0,0,0.3);
+	font-family: nanumGothicBoldWeb;
+	font-size: 35px;
+	color: #fff;
+}
+.slide .detail>.list_img {
+	display: none;
+}
+.slide .detail>.detail_img {/*상세보기 상태의 쿠폰 상세 이미지 이미지*/
+	border: #6d5d4f solid 5px;
+	width: 950px;
+	height: 280px;
+}
+.slide .detail .content {/*쿠폰 상세내용 설명 영역*/
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: 950px;
+	height: 280px;
+	overflow: hidden;
+}
+.slide .detail .content>h1 {
+	position: absolute;
+	width: 0;
+	height: 0;
+	font-size: 0;
+	overflow: hidden;
+	visibility: hidden;
+}
+.slide .detail .note {/*쿠폰 상세 설명 내용*/
+	position: absolute;
+	top: 80px;
+	left: 30px;
+	width: 350px;
+	height: 110px;
+	font-family: nanumGothicBoldWeb;
+	color: #fff;
+}
+.slide .detail .coupon_info {/*쿠폰정보*/
+	position: absolute;
+	top: 200px;
+	width: 100%;
+	font-size: 15px;
+	font-family: nanumGothicBoldWeb;
+	font-weight: bold;
+	color: #fff;
+}
+.slide .detail .cost {/*기준가격*/
+	padding-left: 220px;
+	font-style: normal;
+}
+.slide .detail .discount {/*할인가격*/
+	padding-left: 220px;
+}
+.slide .detail .discount em {/*할인가격*/
+	font-style: normal;
+	font-size: 24px;
+}
+.slide .detail .expire {/*유효기간, 사용기간*/
+	position: absolute;
+	top: 55px;
+	left: 75px;
+	font-size: 12px;
+}
+.detail .remain {/*쿠폰 상세 잔여수량*/
+	position: absolute;
+	bottom: -80px;
+	right: -30px;
+	background: url(svg/star.svg) no-repeat;
+	width: 230px;
+	height: 230px;
+	background-size:cover;
+	box-sizing: border-box;
+	padding-top: 45px;
+	font-family: nanumGothicBoldWeb;
+	font-size: 13px;
+	color: #fff;
+	text-align: center;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+.detail .remain span {
+	font-size: 20px;
+	display: block;
+	text-align: center;
+}
+.detail .term {/*쿠폰 상세 판매기간*/
+	position: absolute;
+	bottom: -50px;
+	right: -15px;
+	width: 180px;
+	height: 180px;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding-top: 83px;
+	font-family: nanumGothicBoldWeb;
+	font-size: 13px;
+	color: #fff;
+	text-align: center;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+.detail .term span {
+	font-size: 16px;
+	display: block;
+	text-align: center;
+}
+.slide .detail .buy {/*쿠폰 구매버튼*/	
+	font-family: nanumGothicBoldWeb;
+	color: #fff;
+	font-size: 20px;
+	width: 120px;
+	line-height: 50px;
+	padding: 0 8px 5px 60px;
+	background: url(svg/buy.svg) 13px 14px no-repeat,  url(svg/button.svg) no-repeat;
+	position: absolute;
+	bottom: 30px;
+	left: 30px;
+}
+.slide .detail section:not(.content) {/*쿠폰 별 추가 정보 공통*/
+	position: absolute;
+	left: 0;
+	top: 290px;
+	width: 100%;
+	height: 360px;
+	padding: 60px 20px 20px 20px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	border: #a59b8c solid 1px;
+	background: url(bg/bg_tab.jpg) repeat-x;
+	-webkit-transition: height 0.5s;
+}
+.slide .detail section:not(.content)>h1 {/*쿠폰 별 추가 탭 제목 정보 공통*/
+	position: absolute;
+	top: 0;
+	z-index: 1;
+	cursor: pointer;
+	width: 149px;
+	text-align: center;
+	line-height: 39px;
+	border-right: #a59b8c solid 1px;
+	border-bottom: #fff solid 1px;
+	background: #fff;
+}
+.slide .detail .gallery>h1 {/*첫번째 탭 제목*/
+	left: 0;
+}
+.slide .detail .reply>h1 {/*두째 탭 제목*/
+	left: 150px;
+}
+.slide .detail .map>h1 {/*세번째 탭 제목*/
+	left: 300px;
+}
+.slide .detail section:not(.content).tab_off {/*상세 내용 비활성 탭*/
+	height: 41px;
+	padding-top: 0px;
+	overflow: hidden;
+	-webkit-transition: height 0.5s;
+}
+.slide .detail .tab_off h1 {/*상세 내용 비활성 탭 제목 정보 공통*/
+	background: #dedbd7;
+	background: -webkit-gradient(linear, left top, left bottom, from(#efede9), to(#dedbd7));
+	background: -moz-linear-gradient(top, #efede9, #dedbd7);
+	border-bottom: #a59b8c solid 1px;
+}
+.slide .detail section *:not(h1) {/*상세 내용 비활성 탭의 내용*/
+	/*display:inherit;*/
+	transition: all 0.5s;
+}
+.slide .detail .tab_off *:not(h1) {/*상세 내용 비활성 탭의 내용*/
+	display: none;
+	transition: all 0.5s;
+}
+.slide .detail .gallery_viewport {/*이미지와 비디오가 보여지는 영역*/
+	position: relative;
+	width: 400px;
+	height: 280px;
+	background: #000;
+}
+.gallery_viewport video {/*비디오 보기 영역*/
+	width: 100%;
+	height: 100%;
+}
+.gallery_viewport .video_off {
+	-webkit-transform: rotateY(-90deg) translateZ(200px);
+	transform: rotateY(-90deg) translateZ(200px);
+	transition: all 0.5s;
+}
+.gallery_viewport img {/*이미지 보기 영역*/
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+}
+.gallery_viewport .img_off {
+	-webkit-transform: rotateY(90deg) translateZ(200px);
+	transform: rotateY(90deg) translateZ(200px);
+	transition: all 0.5s;
+}
+.slide .detail .gallery article {/*동영상 및 이미지 리스트 영역*/
+	position: absolute;
+	top: 60px;
+	left: 450px;
+	width: 530px;
+	height: 280px;
+}
+.slide .detail .gallery article h1 {
+	font-size: 12px;
+	height: 20px;
+	background: url(svg/dot.svg) 0 5px no-repeat;
+	padding-left: 8px;
+}
+.slide .detail .gallery article h1:nth-of-type(2) {
+	margin-top: 15px;
+}
+.slide .detail .gallery .photo_list{
+	width:200px;
+	float:left;
+}
+.slide .detail .gallery .big_photo{
+	width:300px;
+	height:250px;
+	float:left;	
+	border:1px solid #000;
+	
+}
+.slide .detail .gallery li {/* 포토 리스트의 아이템*/
+	display: inline-block;
+	margin-bottom:5px;
+}
+.slide .detail .gallery article li a {/*동영상 및 이미지 링크*/
+	display: inline-block;
+	width: 95px;
+	height: 100px;
+}
+.slide .detail .gallery article li img {/*동영상 및 이미지 리스트의 이미지*/
+	width: 100%;
+	height: 100%;
+}
+.slide .detail .reply ul {/*상품 리플 리스트 영역*/
+	width: 960px;
+	height: 240px;
+	column-count: 2;
+	column-gap: 10px;
+}
+.slide .detail .reply li {/*상품 리플 리스트 아이템*/
+	display: inline-block;
+	width: 470px;
+	height: 90px;
+}
+.slide .detail .reply article {/*상품 리플 아티클*/
+	position: relative;
+}
+.slide .detail .reply article>span {/*상품 리플 평점*/
+	margin-left: 70px;
+	line-height: 18px;
+	color: #F60;
+	font-weight: bold;
+}
+.slide .detail .reply article>p {/*상품 리플 내용*/
+	display: block;
+	margin-left: 70px;
+	line-height: 18px;
+}
+.slide .detail .reply footer {/*상품 리플 풋터*/
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 480px;
+	font-size: 90%;
+	color: #666;
+}
+.slide .detail .reply img {/*상품 리플 리스트 아이템*/
+	width: 60px;
+	height: 60px;
+}
+.slide .detail .reply footer span {
+	position: absolute;
+	left: 70px;
+	top: 45px;
+}
+.slide .detail .reply footer time {
+	position: absolute;
+	left: 350px;
+	top: 45px;
+}
+.slide .detail .reply form[name=reply_form] {
+	width: 958px;
+	line-height: 38px;
+	text-align: center;
+	border: #ccc solid 1px;
+	background: #f8f8f8;
+	color: #666;
+}
+.slide .detail .reply form[name=reply_form] div {/*상품 리플 폼*/
+	display: inline-block;
+}
+.reply_point_div span {
+	background: url(svg/dot.svg) 0 16px no-repeat;
+	padding-left: 8px;
+	padding-right: 5px;
+}
+.reply_point_div button {
+	background: #9fa0a0;
+	border: #898989 solid 1px;
+	padding: 0 7px;
+	color: #fff;
+	font-weight: bold;
+	line-height: 18px;
+	font-size: 11px;
+	border-radius: 2px;
+}
+.reply_text_div label {
+	background: url(svg/dot.svg) 0 16px no-repeat;
+	padding-left: 8px;
+	margin-left: 30px;
+	padding-right: 5px;
+}
+.reply_text_div input[type="submit"] {
+	background: #9fa0a0;
+	border: #898989 solid 1px;
+	padding: 0 7px;
+	color: #fff;
+	font-weight: bold;
+	line-height: 18px;
+	font-size: 11px;
+	border-radius: 2px;
+}
+.slide .detail .map .map_div {/*지도 div*/
+	float: left;
+	width: 550px;
+	height: 280px;
+	border: #ccc solid 1px;
+}
+.slide .detail .map article {/*찾아 오시는 길 영역*/
+	margin-left: 570px;
+}
+.slide .detail .map article>h1 {/*찾아 오시는 길 제목*/
+	font-size: 14px;
+	height: 25px;
+}
+.slide> .detail .map article>h1 .company_name {
+	display: inline;
+	color: #e27a00;
+}
+.slide .detail .map article>div {/*회사소개 내용*/
+	padding: 20px;
+	height: 216px;
+	margin-bottom: 10px;
+	border: #ccc solid 1px;
+}
+.slide .detail .map article>div dt {/*회사소개 항목*/
+	font-weight: bold;
+}
+.slide .detail .map article>div dd {/*회사소개 항목내용*/
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+.slide .detail .map article>div dd img {/*회사로고*/
+	max-width: 100px;
+	max-height: 70px;
+	float: left;
+}
+.slide .detail .map article>div dd p.company_desc {/*회사소개 내용*/
+	min-height: 70px;
+	margin-left: 100px;
+}
+.detail .map article button {/*내위치 보기 버튼*/
+	display: inline-block;
+	margin-top: 3px;
+	margin-left: 15px;
+	background: #999999;
+	background: -webkit-gradient(linear, left top, left bottom, from(#bbb), color-stop(50%, #999), to(#bbb));
+	background: -moz-linear-gradient(top, #bbb, #999, #bbb);
+	border: #8d8d8d solid 1px;
+	border-radius: 8px;
+	box-shadow: 1px 1px 1px #dcdddd;
+	color: #fff;
+	font-weight: bold;
+	width: 80px;
+	height: 16px;
+	font-size: 10px;
+}
+.slide .detail .btn_close_coupon_detail {/*상세보기 닫기 내용*/
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: #6d5d4f url(svg/close.svg) center center no-repeat;
+	width: 50px;
+	padding-top: 50px;
+	height: 0;
+	overflow: hidden;
+}
+.slide .detail .btn_add_cart {/*관심 쿠폰 담기 버튼*/
+	position: absolute;
+	top: 0;
+	right: 50px;
+	background: #6d5d4f url(svg/cart.svg) center center no-repeat;
+	width: 50px;
+	padding-top: 50px;
+	height: 0;
+	overflow: hidden;
+	border-right: #8a7d72 solid 1px;
+}
+/*===============================================쿠폰리스트 슬라이드 상세 보기*/
+
+
+/*================================================쿠폰리스트 슬라이드 형식*/
+
+
+/*쿠폰리스트 리스트 형식================================================*/
+	
+	/*쿠폰리스트 리스트 형식 미리보기================================================*/
+	
+#all #time{
+	display: none;
+}
+
+.list .preview {
+	position: relative;
+	width: 100%;
+	height: 180px;
+	background: #fff;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border: #6d5d4f solid 2px;
+	padding: 20px 20px 20px 650px;
+	cursor: pointer;
+	transition: all 0.5s;
+}
+.list>div>article:last-of-type {
+	margin-bottom: 10;
+}
+.list .preview>h1 {/*쿠폰 제목*/
+	font-size: 140%;
+	width: 306px;
+}
+.list .preview>.list_img {/*쿠폰리스트 이미지*/
+	display: none;
+}
+.list .preview>.detail_img {/*쿠폰 대표 이미지*/
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 623px;
+	height: 176px;
+	-webkit-mask-box-image: url(svg/button_mask.svg);
+}
+.list .preview .content {/*쿠폰 상세내용 설명 영역*/
+	width: 306px;
+}
+.list .preview .content>h1 {
+	position: absolute;
+	width: 0;
+	height: 0;
+	font-size: 0;
+	overflow: hidden;
+	visibility: hidden;
+}
+.list .preview .content p:nth-of-type(1) {/*쿠폰 상세 내용*/
+	display: none;
+}
+.list .preview .content .coupon_info {/*쿠폰정보*/
+	margin-left: 20px;
+}
+.list .preview .content .coupon_info li {
+	line-height: 22px;
+	background: url(svg/coupon_count.svg) 0 3px no-repeat;
+	color: #6d8bb1;
+	padding-left: 22px;
+}
+.list .preview .content .coupon_info .normal_cost_li {/*기준가격*/
+	font-style: normal;
+}
+.list .preview .content .coupon_info .discount_cost_li em {/*할인가격*/
+	font-style: normal;
+}
+.list .preview .content .coupon_info .coupon_time_li {/*쿠폰 상세 판매기간*/
+	background: url(svg/coupon_time.svg) 0 3px no-repeat;
+}
+.list .preview .content ul.coupon_info span.coupon_time {
+}
+.list .preview a.buy {/*쿠폰 구매버튼*/
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background: #6d5d4f url(svg/buy.svg) center center no-repeat;
+	width: 50px;
+	padding-top: 50px;
+	height: 0;
+	overflow: hidden;
+}
+.list .preview .btn_close_coupon_detail {/*쿠폰 상세보기*/
+	display: none;
+}
+.list .preview .btn_add_cart {/*카트에 담기*/
+	position: absolute;
+	bottom: 0;
+	right: 50px;
+	background: #6d5d4f url(svg/cart.svg) center center no-repeat;
+	width: 50px;
+	padding-top: 50px;
+	height: 0;
+	overflow: hidden;
+	border-right: #8a7d72 solid 1px;
+}
+.list .preview div {/*쿠폰 별 추가 정보 공통*/
+	display: none;
+}
+/*================================================쿠폰리스트 리스트 형식 미리보기*/
+	
+	/*쿠폰리스트 리스트 상세 보기===============================================*/
+.list .detail {
+	margin: 15px 0px;
+	position: relative;
+	width: 960px;
+	height: 650px;
+	border: none;
+	padding: 0;
+	overflow: hidden;
+	transition: all 0.5s;
+}
+.list .detail>h1 {/*쿠폰 제목*/
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: 425px;
+	height: 280px;
+	padding: 25px;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background: rgba(0,0,0,0.3);
+	font-family: nanumGothicBoldWeb;
+	font-size: 35px;
+	color: #fff;
+}
+.list .detail>.list_img {
+	display: none;
+}
+.list .detail>.detail_img {/*상세보기 상태의 쿠폰 상세 이미지 이미지*/
+	border: #6d5d4f solid 5px;
+	width: 950px;
+	height: 280px;
+}
+.list .detail .content {/*쿠폰 상세내용 설명 영역*/
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: 950px;
+	height: 280px;
+	overflow: hidden;
+}
+.list .detail .content>h1 {
+	position: absolute;
+	width: 0;
+	height: 0;
+	font-size: 0;
+	overflow: hidden;
+	visibility: hidden;
+}
+.list .detail .note {/*쿠폰 상세 내용*/
+	position: absolute;
+	top: 90px;
+	left: 30px;
+	width: 365px;
+	font-family: nanumGothicBoldWeb;
+	font-size: 13px;
+	color: #fff;
+}
+.list .detail .content .coupon_info {/*쿠폰정보*/
+	position: absolute;
+	top: 200px;
+	width: 100%;
+	font-size: 15px;
+	font-family: nanumGothicBoldWeb;
+	font-weight: bold;
+	color: #fff;
+}
+.list .detail .cost {/*기준가격*/
+	padding-left: 220px;
+	font-style: normal;
+}
+.list .detail .discount {/*할인가격*/
+	padding-left: 220px;
+}
+.list .detail .discount em {/*할인가격*/
+	font-style: normal;
+	font-size: 24px;
+}
+.list .detail .expire {/*사용기간*/
+	position: absolute;
+	top: 55px;
+	left: 75px;
+	font-size: 12px;
+}
+.list .detail a.buy {/*쿠폰 구매버튼*/
+	display: block;
+	font-family: nanumGothicBoldWeb;
+	color: #fff;
+	font-size: 20px;
+	width: 120px;
+	line-height: 50px;
+	padding: 0 8px 5px 60px;
+	background: url(svg/buy.svg) 13px 14px no-repeat,  url(svg/button.svg) no-repeat;
+	position: absolute;
+	bottom: 30px;
+	left: 30px;
+}
+.list .detail section:not(.content) {/*쿠폰 별 추가 정보 공통*/
+	position: absolute;
+	left: 0;
+	top: 290px;
+	width: 100%;
+	height: 360px;
+	padding: 60px 20px 20px 20px;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border: #a59b8c solid 1px;
+	background: #fff url(bg/bg_tab.jpg) repeat-x;
+	transition: height 0.5s;
+}
+.list .detail section:not(.content)>h1 {/*쿠폰 별 추가 탭 제목 정보 공통*/
+	position: absolute;
+	top: 0;
+	z-index: 1;
+	cursor: pointer;
+	width: 149px;
+	text-align: center;
+	line-height: 39px;
+	border-right: #a59b8c solid 1px;
+	border-bottom: #fff solid 1px;
+	background: #fff;
+}
+.list .detail .gallery>h1 {/*첫번째 탭 제목*/
+	left: 0;
+}
+.list .detail .reply>h1 {/*두째 탭 제목*/
+	left: 150px;
+}
+.list .detail .map>h1 {/*세번째 탭 제목*/
+	left: 300px;
+}
+.list .detail section:not(.content).tab_off {/*상세 내용 비활성 탭*/
+	height: 41px;
+	padding-top: 0px;
+	overflow: hidden;
+	transition: height 0.5s;
+}
+.list .detail .tab_off h1 {/*상세 내용 비활성 탭 제목 정보 공통*/
+	background: #dedbd7;
+	background: -webkit-gradient(linear, left top, left bottom, from(#efede9), to(#dedbd7));
+	background: -moz-linear-gradient(top, #efede9, #dedbd7);
+	border-bottom: #a59b8c solid 1px;
+}
+.list .detail section *:not(h1) {/*상세 내용 비활성 탭의 내용*/
+	transition: all 0.5s;
+}
+.list .detail .tab_off *:not(h1) {/*상세 내용 비활성 탭의 내용*/
+	display: none;
+	transition: all 0.5s;
+}
+.list .detail .gallery .gallery_viewport {/*이미지와 비디오가 보여지는 영역*/
+	position: relative;
+	width: 400px;
+	height: 280px;
+	background: #000;
+}
+.gallery_viewport>video {/*비디오 보기 영역*/
+	width: 100%;
+	height: 100%;
+}
+.gallery_viewport .video_off {
+	-webkit-transform: rotateY(-90deg) translateZ(200px);
+	transform: rotateY(-90deg) translateZ(200px);
+	transition: all 0.5s;
+}
+.gallery_viewport>img {/*이미지 보기 영역*/
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+}
+.gallery_viewport>.img_off {
+	-webkit-transform: rotateY(90deg) translateZ(200px);
+	transform: rotateY(90deg) translateZ(200px);
+	transition: all 0.5s;
+}
+.list .detail .gallery>article {/*동영상 및 이미지 리스트 영역*/
+	position: absolute;
+	top: 60px;
+	left: 450px;
+	width: 530px;
+	height: 280px;
+}
+.list .detail .gallery .photo_list{
+	width:200px;
+	float:left;
+}
+.list .detail .gallery li{
+	margin-bottom:5px;
+}
+.list .detail .gallery .big_photo{
+	width:300px;
+	height:250px;
+	float: left;
+	border:1px solid #000;
+}
+.list .detail .gallery>article h1 {
+	font-size: 12px;
+	height: 20px;
+	background: url(svg/dot.svg) 0 5px no-repeat;
+	padding-left: 8px;
+}
+.list .detail .gallery>article h1:nth-of-type(2) {
+	margin-top: 15px;
+}
+.list .detail .gallery>article li {/*동영상 및 이미지 리스트의 아이템*/
+	display: inline-block;
+}
+.list .detail .gallery>article li img {/*동영상 및 이미지 리스트의 이미지*/
+	width: 95px;
+	height: 100px;
+}
+.list .detail .reply ul {/*상품 리플 리스트 영역*/
+	width: 960px;
+	height: 240px;
+	column-count: 2;
+	column-gap: 10px;
+}
+.list .detail .reply li {/*상품 리플 리스트 아이템*/
+	display: inline-block;
+	width: 470px;
+	height: 90px;
+}
+.list .detail .reply article {/*상품 리플 아티클*/
+	position: relative;
+}
+.list .detail .reply article>span {/*상품 리플 평점*/
+	margin-left: 70px;
+	line-height: 18px;
+	color: #F60;
+	font-weight: bold;
+}
+.list .detail .reply article>p {/*상품 리플 내용*/
+	display: block;
+	margin-left: 70px;
+	line-height: 18px;
+}
+.list .detail .reply footer {/*상품 리플 풋터*/
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 480px;
+	font-size: 90%;
+	color: #666;
+}
+.list .detail .reply img {/*상품 리플 리스트 아이템*/
+	width: 60px;
+	height: 60px;
+}
+.list .detail .reply footer span {
+	position: absolute;
+	left: 70px;
+	top: 45px;
+}
+.list .detail .reply footer time {
+	position: absolute;
+	left: 150px;
+	top: 45px;
+}
+.list .detail .reply form[name=reply_form] div {/*상품 리플 폼*/
+	display: inline-block;
+}
+.list .detail .map .map_div {/*지도 div*/
+	float: left;
+	width: 550px;
+	height: 280px;
+	border: #ccc solid 1px;
+}
+.list .detail .map article {/*찾아 오시는 길 영역*/
+	margin-left: 570px;
+}
+.list .detail .map article>h1 {/*찾아 오시는 길 제목*/
+	font-size: 14px;
+	height: 25px;
+}
+.list .detail .map article>h1 .company_name  {
+	display: inline;
+	color: #e27a00;
+}
+.list .detail .map article>div {/*찾아 오시는 길 내용*/
+	padding: 20px;
+	height: 220px;
+	margin-bottom: 10px;
+	border: #ccc solid 1px;
+}
+
+.list .detail .map article>div dt {/*회사소개 항목*/
+	font-weight: bold;
+}
+.list .detail .map article>div dd {/*회사소개 항목내용*/
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+.list .detail .map article>div dd img {/*회사로고*/
+	max-width: 100px;
+	max-height: 70px;
+	float: left;
+}
+.list .detail .map article>div dd p.company_desc {/*회사소개 내용*/
+	min-height: 70px;
+	margin-left: 100px;
+}
+
+
+.list .detail .btn_close_coupon_detail {/*상세보기 닫기 내용*/
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: #6d5d4f url(svg/close.svg) center center no-repeat;
+	width: 50px;
+	padding-top: 50px;
+	height: 0;
+	overflow: hidden;
+}
+.list .detail .btn_add_cart {/*관심 쿠폰 담기 버튼*/
+	position: absolute;
+	top: 0;
+	right: 50px;
+	background: #6d5d4f url(svg/cart.svg) center center no-repeat;
+	width: 50px;
+	padding-top: 50px;
+	height: 0;
+	overflow: hidden;
+	border-right: #8a7d72 solid 1px;
+}
+/*===============================================쿠폰리스트 리스트 상세 보기*/
+
+/*================================================쿠폰리스트 리스트 형식*/
+
+
+/*근처==============================================================================*/
+
+#location_map {/*메뉴 -근처 지도 표시 영역*/
+	border: #a59b8c solid 1px;
+	background: #fff;
+	height: 444px;
+}
+#location_map .list_img {/*쿠폰 리스트 이미지. google map의 infoWindow에서 적용*/
+	width: 100px;
+}
+#location_map .note {/*쿠폰 상세 설명 내용. google map의 infoWindow에서 적용*/
+	width: 300px;
+	margin-bottom: 12px;
+	font-family: nanumGothicBoldWeb;
+}
+#location_map .coupon_info {/*쿠폰정보. google map의 infoWindow에서 적용*/
+	font-size: 12px;
+	font-family: nanumGothicBoldWeb;
+}
+#location_coupon_control {
+	text-align: center;
+}
+#location_coupon_counter {
+	position: absolute;
+	top: 450px;
+	right: 10px;
+	color: #e3650c;
+	font-weight: bold;
+}
+#location_coupon_control input[type="range"] {
+	width: 920px;
+	margin-top: 15px;
+}
+#btn_pre_location_coupon {/*이전 버튼*/
+	background: #c1b8ae url(svg/btn_preItems.svg) center center no-repeat;
+	background-size: 60%;
+	width: 30px;
+	padding-top: 30px;
+	height: 0;
+	overflow: hidden;
+	border-radius: 3px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+#btn_next_location_coupon {/*다음 버튼*/
+	background: #c1b8ae url(svg/btn_nextItems.svg) center center no-repeat;
+	background-size: 60%;
+	width: 30px;
+	padding-top: 30px;
+	height: 0;
+	overflow: hidden;
+	border-radius: 3px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+/*슬라이드 플러그인용 CSS*/
+.ui-jcoverflip {
+	position: relative;
+}
+.ui-jcoverflip--item {
+	position: absolute;
+	display: block;
+}
+/*슬라이드 플러그인용 CSS 끝*/
+
+	/*슬라이드=====================================================================*/
+
+/* 숨김 콘텐츠 */
+.location .gallery, .location .reply, .location .map, .locaton .pre, .location .next, .location button{
+	display:none;	
+}
+
+.location .coupon_list{
+	position:relative;
+	height:160px;
+	overflow:hidden;
+	-webkit-perspective:800;
+}
+.location .coupon_list > article{
+	position:absolute;
+	top:30px;
+	transition: all 0.5s;
+}
+.location .location_slide_pre_hide{/*숨겨진 다음 쿠표폰들*/
+	left:-180px;
+	opacity:0;
+}.location .location_slide_pre_02{/*두번째 다음 쿠폰*/
+	left:10px;
+	-webkit-transform:rotateY(45deg);
+	transform:rotateY(45deg);
+	opacity:0.8;
+}
+.location .location_slide_pre_01{/*첫번째 이전 쿠폰*/
+	left:200px;
+	-webkit-transform:rotateY(45deg);
+	transform:rotateY(45deg);
+	opacity:0.8;
+}
+.location .location_slide_act{/*현재 활성 요소*/
+	outline: #81a539 solid 4px;
+	z-index: 100;
+	left:380px;
+	-webkit-transform: scale(1.4);
+	-webkit-transform-origin:center center;
+	transform: scale(1.4);
+	transform-origin:center center;
+	transition: all 0.5s;
+}
+.location .location_slide_next_01{/*첫번째 다음 쿠폰*/
+	left:570px;
+	-webkit-transform:rotateY(-45deg);
+	transform:rotateY(-45deg);
+	opacity:0.8;
+	z-index:10;
+}
+.location .location_slide_next_02{/*두번째 다음 쿠폰*/
+	left:760px;
+	-webkit-transform:rotateY(-45deg);	
+	transform:rotateY(-45deg);	
+	opacity:0.8;
+	z-index:5;
+}
+.location .location_slide_next_hide{/*숨겨진 다음 쿠폰들*/
+	left:950px;
+	opacity:0;
+}
+
+/*  복사 한 코드 */
+.location .coupon_list {/*메뉴-근처 쿠폰 리스트 영역*/
+	border-top: #a59b8c solid 1px;
+	border-bottom: #a59b8c solid 1px;
+	display: inline-block;
+	width: 958px;
+	padding:0 25px;
+	background: transparent;
+}
+.location>h1 {
+	background: #dedbd7;
+	background: -webkit-gradient(linear, left top, left bottom, from(#efede9), to(#dedbd7));
+	background: -moz-linear-gradient(top, #efede9, #dedbd7);
+	border-bottom: #a59b8c solid 1px;
+	text-align: center;
+	line-height: 30px;
+	font-size: 100%;
+}
+.location .coupon_list article {/*메뉴-근처 쿠폰별 영역*/
+	width: 25%;
+	float: left;
+	background: #fff;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border: #466a2f solid 1px;
+	cursor: pointer;
+}
+.location .coupon_list article:hover, .location .coupon_list article:focus {
+	outline: #81a539 solid 4px;
+	z-index: 100;
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
+	transition: all 0.5s;
+}
+.location .coupon_list article>h1 {/*메뉴-근처 쿠폰별 제목*/
+	background: #537e38;
+	background: -webkit-gradient(linear, left top, left bottom, from(#839e2c), to(#537e38));
+	background: -moz-linear-gradient(top, #839e2c, #537e38);
+	color: #fff;
+	font-size: 100%;
+	line-height: 30px;
+	padding-left: 10px;
+	text-align: center;
+}
+.location .coupon_list article .list_img {/*메뉴-근처 쿠폰 리스트 이미지*/
+	display: none;
+}
+.location .coupon_list article .detail_img {/*메뉴-근처 쿠폰 상세 이미지*/
+	width: 100%;
+	height: 70px;
+}
+.location .coupon_list article .content {/*메뉴-근처 상세설명 영역*/
+}
+.location .coupon_list article .content h1 {/*메뉴-근처 상세설명 제목*/
+	position: absolute;
+	width: 0;
+	height: 0;
+	font-size: 0;
+	overflow: hidden;
+	visibility: hidden;
+}
+.location .coupon_list article .content p:nth-of-type(1) {/*메뉴-근처 상세내용*/
+	display: none;
+}
+.location .coupon_list article .content ul.coupon_info {/*쿠폰정보*/
+	display: none;
+}
+.location .coupon_list article .content a.buy {/*쿠폰 구매버튼*/
+	display: block;
+	background: rgba(0,0,0,0.1) url(svg/buy.svg) center center no-repeat;
+	background-size: 40%;
+	position: absolute;
+	width: 50px;
+	padding-top: 30px;
+	height: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+	/*======================================================================슬라이드*/
+
+/*==============================================================================근처*/
+
+
+/*구매 페이지==============================================================================*/
+.buy_section>form {
+	border: #a59b8c solid 1px;
+	background: #fff url(svg/cart_form.svg) no-repeat left bottom;
+	background-size: 30%;
+	padding: 10px 30px;
+	position: relative;
+}
+.buy_section>form>h1 {
+	display: block;
+	width: 400px;
+	margin: 0 auto;
+	border: #ccc solid 3px;
+	background: #f8f8f8;
+	padding: 15px 0;
+	text-align: center;
+	margin-bottom: 20px;
+}
+.table_buy_form {
+	margin: 0 auto;
+	width: 400px;
+}
+.table_buy_form th {
+	text-align: left;
+	height: 30px;
+	width: 100px;
+	background: url(svg/dot.svg) 0 12px no-repeat;
+	padding-left: 7px;
+}
+.table_buy_form input {
+	width: 200px;
+}
+.table_buy_form input[type="number"] {
+	width: 50px;
+}
+.table_buy_form input[type="number"]:nth-child(2) {
+	margin-right: 10px;
+}
+#cardsecretnumber {
+	width: 80px;
+	margin-right: 10px;
+}
+.div_btn {
+	text-align: center
+}
+.div_btn .btn_buy {
+	background: #f68001;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f9a837), color-stop(50%, #f68001), to(#f9a837));
+	background: -moz-linear-gradient(top, #f9a837, #f68001, #f9a837);
+	border: #da8402 solid 1px;
+	border-radius: 2px;
+	box-shadow: 1px 1px 1px #dcdddd;
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold;
+	width: 200px;
+	text-align: center;
+	line-height: 28px;
+}
+/*==============================================================================구매페이지*/
+
+/*구매 완료 페이지=========================================================================*/
+.buy_info {
+	border: #a59b8c solid 1px;
+	background: #fff url(svg/icon_coupon.svg) no-repeat 500px -70px;
+	background-size: 60%;
+	padding: 20px;
+}
+.buy_info h1 {
+	font-size: 100%;
+	height: 22px;
+}
+.buy_info p {
+	border: #ccc solid 1px;
+	background: rgba(248,248,248,0.5);
+	padding: 10px 0;
+	text-align: center;
+	font-size: 15px;
+	font-family: nanumGothicBoldWeb;
+	margin-bottom: 30px;
+}
+img.qr_image {
+	width: 150px;
+	border: #ccc solid 1px;
+	padding: 5px;
+	margin-bottom: 30px;
+}
+.buy_info form {
+	border: #ccc solid 1px;
+	background: rgba(248,248,248,0.5);
+	padding: 20px;
+	text-align: center;
+}
+.buy_info form input {
+	margin-left: 100px;
+}
+.buy_info form button {
+	background: #999999;
+	background: -webkit-gradient(linear, left top, left bottom, from(#bbb), color-stop(50%, #999), to(#bbb));
+	background: -moz-linear-gradient(top, #bbb, #999, #bbb);
+	border: #8d8d8d solid 1px;
+	border-radius: 15px;
+	box-shadow: 1px 1px 1px #dcdddd;
+	color: #fff;
+	font-weight: bold;
+	padding: 2px 20px;
+	font-size: 12px;
+}
+/*=========================================================================구매 완료 페이지*/
+
+/*회원 가입 페이지=========================================================================*/
+#join_section {/*회원 가입 페이지 섹션*/
+	margin-top: 10px;
+}
+#join_section>h1 {/*회원 가입페이지 제목*/
+	font-family: nanumGothicBoldWeb;
+	line-height: 40px;
+	color: #fff;
+	font-size: 16px;
+	background: #4d4137;
+	background: -webkit-gradient(linear, left top, left bottom, from(#83766a), to(#4d4137));
+	background: -moz-linear-gradient(top, #83766a, #4d4137);
+	text-align: center;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+}
+form[name=join_form] {/*회원 페이지 폼*/
+	border: #a59b8c solid 1px;
+	background: #fff;
+	padding: 40px 40px 40px 230px;
+	min-height: 150px;
+	position: relative;
+}
+form[name=join_form]>img {/*프로필 이미지*/
+	position: absolute;
+	top: 40px;
+	left: 40px;
+	width: 150px;
+	height: 150px;
+}
+form[name=join_form]>table {/*회원 가입폼 테이블*/
+	border-top: #6d5d4f solid 2px;
+}
+form[name=join_form]>table th {
+	border-bottom: #ccc solid 1px;
+	background: #f8f8f8;
+	width: 130px;
+	height: 30px;
+}
+form[name=join_form]>table td {
+	border-bottom: #ccc solid 1px;
+	padding-left: 10px;
+}
+form[name=join_form]>div.btn_div button {/* 회원 가입버튼 */
+	display: block;
+	margin: 20px auto 0 auto;
+	background: #999999;
+	background: -webkit-gradient(linear, left top, left bottom, from(#bbb), color-stop(50%, #999), to(#bbb));
+	background: -moz-linear-gradient(top, #bbb, #999, #bbb);
+	border: #8d8d8d solid 1px;
+	border-radius: 15px;
+	box-shadow: 1px 1px 1px #dcdddd;
+	color: #fff;
+	font-weight: bold;
+	width: 120px;
+	height: 30px;
+	font-size: 12px;
+}
+/*=========================================================================회원 가입 페이지*/
+
+/*마이 페이지=========================================================================*/
+#my_coupon_section {
+	background: #ecf3e6;
+	border: #678b33 solid 2px;
+	padding: 20px 40px 40px 40px;
+}
+#my_coupon_section>h1 {
+	font-family: nanumGothicBoldWeb;
+	color: #678b33;
+	font-size: 16px;
+	text-align: center;
+	height: 60px;
+}
+#my_coupon_section>article {
+	display: inline-block;
+	border: #ccc solid 1px;
+	background: #fff;
+	width: 180px;
+	padding: 10px;
+	-moz-box-shadow: 1px 1px 1px #dcdddd;
+	box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+	font-family: nanumGothicBoldWeb;
+	cursor: pointer;
+	transition: all 0.5s;
+}
+#my_coupon_section>article:nth-child(even) {
+	-webkit-transform: rotate(5deg);
+	transform: rotate(5deg);
+}
+#my_coupon_section>article:nth-child(3n) {
+	-webkit-transform: rotate(-15deg);
+	transform: rotate(-15deg);
+}
+#my_coupon_section>article:hover, #my_coupon_section>article:focus {
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg);
+	outline: #81a539 solid 4px;
+	position: relative;
+	z-index: 100;
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
+}
+#my_coupon_section>article h1 {
+	text-align: center;
+	line-height: 30px;
+	font-size: 130%;
+}
+#my_coupon_section>article img {
+	width: 180px;
+	height: 170px;
+	margin: 10px 0;
+}
+#my_coupon_section>article p, #my_coupon_section>article time {
+	color: #666;
+	line-height: 18px;
+}
+#my_coupon_section input[type="submit"]{/* 후기 등록 버튼 */
+	background: #f68001;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f9a837), color-stop(50%, #f68001), to(#f9a837));
+	background: -moz-linear-gradient(top, #f9a837, #f68001, #f9a837);
+	border: #da8402 solid 1px;
+	border-radius: 2px;
+	box-shadow: 1px 1px 1px #dcdddd;
+	color: #fff;
+	font-weight: bold;
+	padding: 3px 10px;
+	font-size: 11px;
+	letter-spacing: -1px;
+	vertical-align: middle;
+}
+/*=========================================================================마이 페이지*/
+
+/*추천 쿠폰 페이지=========================================================================*/
+#best_section {/*추천 쿠폰 페이지 섹션*/
+	margin-top: 10px;
+	width: 100%;
+	display: inline-block;
+}
+#best_section h1 {/*추천 쿠폰 페이지 제목*/
+	font-family: nanumGothicBoldWeb;
+	line-height: 40px;
+	color: #fff;
+	font-size: 16px;
+	background: #4d4137;
+	background: -webkit-gradient(linear, left top, left bottom, from(#83766a), to(#4d4137));
+	background: -moz-linear-gradient(top, #83766a, #4d4137);
+	text-align: center;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+}
+#best_section #graph_by_sale_article>div {
+	width: 50%;
+	float: left;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border: #a59b8c solid 1px;
+	background: #fff;
+}
+#best_section #graph_by_sale_article #graph_by_sale_div {
+	border-right: none;
+	border-bottom: none;
+}
+#best_section #graph_by_sale_article #graph_by_point_div {
+	border-bottom: none;
+}
+#best_section #graph_by_sale_article #graph_by_view_div {
+	border-right: none;
+}
+#best_section #graph_by_sale_article>div h2 {
+	background: #dedbd7;
+	background: -webkit-gradient(linear, left top, left bottom, from(#efede9), to(#dedbd7));
+	background: -moz-linear-gradient(top, #efede9, #dedbd7);
+	border-bottom: #a59b8c solid 1px;
+	text-align: center;
+	line-height: 30px;
+	font-size: 100%;
+}
+#graph_by_sale_article > div{
+	height: 300px;
+	width: 472px;
+}
+#best_section #graph_by_sale_article>div canvas, #best_section #graph_by_sale_article>div div {
+	height: 250px;
+	width: 472px;
+}
+#best_section #graph {
+	background: rgba(255,255,255,0.5) url(../image/mainContent_logo2_text.svg);
+	background-size: 100px 100px;
+	vertical-align: top;
+}
+#best_section button {
+	width: 50%;
+	float: left;
+	background: #af7b3a;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ca9a33), to(#af7b3a));
+	background: -moz-linear-gradient(top, #ca9a33, #af7b3a);
+	border: #875c25 solid 1px;
+	border-top: none;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	color: #fff;
+	font-family: nanumGothicBoldWeb;
+	line-height: 30px;
+	box-shadow: 0px 2px 3px rgba(0,0,0,0.2);
+}
+#best_section button:nth-of-type(1) {
+	border-bottom-left-radius: 20px;
+	border-right: none;
+}
+#best_section button:nth-of-type(2) {
+	border-bottom-right-radius: 20px;
+}
+
+/*=========================================================================추천 쿠폰 페이지*/
+
+/*관심 쿠폰=========================================================================*/
+#cart > ul > li img{
+	width: 48px;
+	height: 28px;
+}
+
+/*=========================================================================관심 쿠폰*/
+

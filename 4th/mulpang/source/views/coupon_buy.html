@@ -1,0 +1,86 @@
+<div id="main">
+	<section id="coupon" class="slide">
+		<article class="detail" data-coupon_idx="{coupon_idx}">
+			<h1>커피통 와플</h1>
+			<img class="list_img" src="image/photo/coupon_02.jpg" alt="커피통 와플 &amp; 아이스크림 SET">
+			<img class="detail_img" src="image/photo/coupon_02_detail.jpg" alt="커피통 와플 상세 이미지" title="자세한 사항은 아래내용 참조">
+			<section class="content">
+				<h1>와플&amp;아이스크림 SET</h1>
+				<p class="note">
+					더운여름 아이스크림과 함께 먹는 와플의 달콤함!<br>
+					저희 커피통에서는 오픈기념 행사로 와플 &amp; 아이스크림 SET를 <br>
+					50% 할인된 가격으로 저렴하게 모십니다.<br>
+					또한 평일 오후 3시 이전 방문 고객이 와플 &amp; 아이스크림 SET를<br>
+					주문하실 경우 아이스 아메리카노를 서비스로 드립니다.^^
+				</p>
+				<ul class="coupon_info">
+					<li class="cost">정상가격 : <del>15,000원</del></li>
+					<li class="discount">할인가격 : <em>7,500원</em></li>
+					<li class="expire">유효기간 : <time datetime="2012-06-01">2012-07-01</time> 부터 <time datetime="2012-08-31">2012-08-31</time> 까지</li>
+					<li class="remain">잔여수량 : <span>50개</span></li>
+					<li class="term">판매기간 : <span>6월 30 까지</span></li>
+				</ul>
+				<a href="coupon_buy.html" class="buy">구매하기</a>
+			</section>
+
+
+			<!-- 쿠폰 구매 폼 -->
+			<div class="buy_section">
+				<form name="buy_form" action="#" method="post" novalidate>
+					<input type="hidden" name="couponId" value="565d2ac8fdac0bc0003a65c1">
+					<input type="hidden" name="unitPrice" value="7500">
+					<input type="hidden" name="cmd" value="buyCoupon">
+					
+					<h1>아이스크림 와플 세트</h1>
+					<table class="table_buy_form">
+						<tr>
+							<th><label for="buyQuantity">구매수량</label></th>
+							<td class="number_td">
+								<input type="number" name="quantity" min="1" max="10" value="1" required 
+											 oninput="setPrice(this, 7500)"></td>
+						</tr>
+						<tr>
+							<th>결제가격</th>
+							<td class="number_td"><output name="totalPrice">7500 원</output></td>
+						</tr>
+						<tr>
+							<th><label for="cardtype">카드종류</label></th>
+							<td>
+								<select name="cardType">
+									<option value="KB">국민카드</option>
+									<option value="HN">하나카드</option>
+									<option value="BC">BC카드</option>
+									<option value="SS">삼성카드</option>
+									<option value="SH">신한카드</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th><label for="cardNumber">카드번호</label></th>
+							<td><input type="text" name="cardNumber" maxlength="16" pattern="^\d(16)$" required></td>
+						</tr>
+						<tr>
+							<th><label>카드 유효 기간</label></th>
+							<td>
+								<input type="number" min="1" max="12" maxlength="2" value="1" required name="cardExpireMonth" title="유효기간 월"> 
+								<input type="number" maxlength="4" name="cardExpireYear" title="유효기간 년">(MM / YYYYY)
+							</td>
+						</tr>
+						<tr>
+							<th><label for="csv">CSV코드</label></th>
+							<td><input type="text" name="csv" maxlength="3" pattern="^\d(3)$" required placeholder="카드뒷면 3자리"></td>
+						</tr>
+					</table>
+					<div class="div_btn">
+						<button type="submit" class="btn_buy">구매하기</button>
+					</div>
+				</form>
+			</div>
+
+
+
+
+
+		</article>				
+	</section>
+</div>

@@ -1,0 +1,206 @@
+<div id="main">
+	<section id="search">
+		<h1>쿠폰 검색</h1>
+		<form id="coupon_search" name="coupon_search" action="#" method="get">
+			<label for="search_date">기간</label>
+			<select id="search_date" name="search_date">
+				<option value="buyable">구매가능</option>
+				<option value="all">전체</option>
+				<option value="past">지난쿠폰</option>
+			</select>
+			<label for="search_location">지역</label>
+			<select id="search_location" name="search_location">
+				<option value="">전체</option>
+				<option>강남</option>
+				<option>압구정</option>
+				<option>논현</option>
+				<option>홍대</option>
+				<option>신촌</option>
+				<option>기타</option>
+			</select>
+			<label for="search_keyword">키워드</label>
+			<input type="text" id="search_keyword" name="search_keyword">
+			<input type="submit" value="검색">
+		</form>
+	</section>
+	<section>
+		<form id="order" name="list_order_form" action="#" method="get">
+			<label for="list_oder">리스트 정렬순서</label>
+			<select id="list_order" name="list_order">
+				<option value="saleDate.start">최근순</option>
+				<option value="satisfactionAvg">평가순</option>
+				<option value="buyQuantity">판매순</option>
+			</select>
+			<button type="submit">확인</button>
+		</form>
+	</section>
+	<section id="coupon" class="slide">
+		<h1 class="blind">쿠폰 리스트</h1>
+		<div id="time"><time datetime="2015-03-30">2015.08.01</time></div>
+		<div class="coupon_list">
+			<!-- 쿠폰 목록 출력 영역 -->
+
+		</div>
+	</section>
+	<div id="coupon_control">
+		<button type="button" class="btn_pre">이전</button>
+		<button type="button" class="btn_next">다음</button>
+	</div>
+</div>		
+
+<script type="text/x-jquery-tmpl" id="tmpl_coupon_list">
+
+<article class="preview" data-couponid="{%= _id %}" tabindex="0">
+	<h1>{%= couponName %}</h1>
+	<img class="list_img" src="image/{%= image.main.file %}" alt="{%= image.main.desc %}">
+	<img class="detail_img" src="image/{%= image.detail.file %}" alt="{%= image.detail.desc %}" title="자세한 사항은 아래내용 참조">
+	<section class="content">
+		<h1>{%= couponName %}</h1>
+		<p class="note">
+			{%= desc %}
+		</p>
+		<ul class="coupon_info">
+			<li class="cost">정상가격 : <del>{%= primeCost %}원</del></li>
+			<li class="discount">할인가격 : <em>{%= price %}원</em></li>
+			<li class="expire">유효기간 : <time datetime="{%= Util.dateToString('-', useDate.start) %}">{%= Util.dateToString('-', useDate.start) %}</time> 부터 <time datetime="{%= Util.dateToString('-', useDate.finish) %}">{%= Util.dateToString('-', useDate.finish) %}</time> 까지</li>
+			<li class="remain">잔여수량 : <span>{%= quantity-buyQuantity %}개</span></li>
+			<li class="term">판매기간 : <span>{%= Util.dateToString('.', saleDate.finish) %}</span></li>
+		</ul>
+		<a href="coupon_buy.html" class="buy">구매하기</a>
+	</section>
+	
+	<!-- 쿠폰 상세정보 출력 영역 -->
+	
+	<button type="button" class="btn_add_cart">관심쿠폰등록</button>
+	<button type="button" class="btn_close_coupon_detail">쿠폰 상세 보기 닫기</button>
+</article>
+</script>
+
+<script type="text/x-jquery-tmpl" id="tmpl_coupon_detail">
+<div class="coupon_tab">
+	<section class="gallery">
+		<h1 tabindex="0">갤러리</h1>
+		<div class="gallery_viewport">
+			<!--동영상 재상 -->
+			{%if video%}
+			<video preload="none" src="video/{%= video.src %}" poster="video/{%= video.poster %}" controls></video>
+			{%/if%}
+		</div>
+		<article>
+			<h1>포토 리스트</h1>
+			<ul class="photo_list">
+				{%each(i, value) image.etc%}
+					<li><a href="image/{%= value.file %}" title="{%= value.desc %}"><img src="image/{%= value.file %}" alt="{%= value.desc %}"> </a></li>
+				{%/each%}
+			</ul>
+			<div class="big_photo">
+				{%if image.etc.length > 0%}
+					<img src="image/{%= image.etc[0].file %}" width="300" height="250" alt="{%= image.etc[0].desc %}">
+				{%/if%}
+			</div>
+		</article>
+	</section>
+	<section class="reply tab_off">
+		<h1 tabindex="0">쿠폰 후기 및 평점</h1>
+		<ul>
+
+			{%each(i, epilogue) epilogue%}
+				<li>
+					<article>
+						<span>{%= Util.toStar(epilogue.satisfaction) %}</span>
+						<p>{%= epilogue.content %}</p>
+						<footer>
+							<img src="image/member/{%= epilogue.writer %}.jpg" alt="{%= epilogue.writer %} 회원 프로필 사진"> <span>{%= epilogue.writer %}</span>
+							<time datetime="{%= Util.dateToString('-', epilogue.regDate) %}">{%= Util.dateToString('.', epilogue.regDate) %}</time>
+						</footer>
+					</article>
+				</li>
+			{%/each%}
+
+		</ul>
+	</section>
+	<section class="map tab_off">
+		<h1 tabindex="0">찾아오시는 길</h1>
+		<div class="map_div">Loading....</div>
+		<article class="shop" data-lat="{%= shop.position.lat %}" data-lng="{%= shop.position.lng %}">
+			<h1>
+				<span class="company_name">{%= shop.shopName %}</span>
+			</h1>
+			<div>
+				<dl>
+					<dt>영업점 소개</dt>
+					<dd>
+						<img src="image/{%= shop.picture.file %}" alt="{%= shop.picture.desc %}">
+						<p class="company_desc">{%= shop.shopDesc %}</p>
+					</dd>
+					<dt>찾아 오시는길</dt>
+					<dd>
+						{%= shop.directions %}
+						<button type="button">내 위치 보기</button>
+					</dd>
+					<dt>영업시간</dt>
+					<dd>{%= shop.officeHours.open %} ~ {%= shop.officeHours.close %}</dd>
+					<dt>문의전화 / e-mail</dt>
+					<dd>
+						전화 : <a href="tel:{%= shop.tel %}">{%= shop.tel %}</a> / e-mail : <a href="mailto:{%= shop.email %}">{%= shop.email %}</a>
+					</dd>
+				</dl>
+			</div>
+		</article>
+	</section>
+</div>
+
+<!-- 쿠폰 구매폼 출력 영역 -->
+<!-- 쿠폰 구매 폼 -->
+<div class="buy_section">
+	<form name="buy_form" action="#" method="post" >
+		<input type="hidden" name="couponId" value="{%= _id %}">
+		<input type="hidden" name="unitPrice" value="{%= price %}">
+		<input type="hidden" name="cmd" value="buyCoupon">
+
+		<h1>아이스크림 와플 세트</h1>
+		<table class="table_buy_form">
+			<tr>
+				<th><label for="buyQuantity">구매수량</label></th>
+				<td class="number_td">
+					<input type="number" name="quantity" min="1" max="{%= quantity - buyQuantity%}" value="1" required 
+								 oninput="setPrice(this, {%= price %})"></td>
+			</tr>
+			<tr>
+				<th>결제가격</th>
+				<td class="number_td"><output name="totalPrice">{%= price %}원</output></td>
+			</tr>
+			<tr>
+				<th><label for="cardtype">카드종류</label></th>
+				<td>
+					<select name="cardType">
+						<option value="KB">국민카드</option>
+						<option value="HN">하나카드</option>
+						<option value="BC">BC카드</option>
+						<option value="SS">삼성카드</option>
+						<option value="SH">신한카드</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th><label for="cardNumber">카드번호</label></th>
+				<td><input type="text" name="cardNumber" maxlength="16" pattern="^\d{16}$" required></td>
+			</tr>
+			<tr>
+				<th><label>카드 유효 기간</label></th>
+				<td>
+					<input type="number" min="1" max="12" maxlength="2" value="1" required name="cardExpireMonth" title="유효기간 월"> 
+					<input type="number" maxlength="4" min="1" max="2019" value="2015" name="cardExpireYear" title="유효기간 년">(MM / YYYYY)
+				</td>
+			</tr>
+			<tr>
+				<th><label for="csv">CSV코드</label></th>
+				<td><input type="text" name="csv" maxlength="3" pattern="^\d{3}$" required placeholder="카드뒷면 3자리"></td>
+			</tr>
+		</table>
+		<div class="div_btn">
+			<button type="submit" class="btn_buy">구매하기</button>
+		</div>
+	</form>
+</div>
+</script>

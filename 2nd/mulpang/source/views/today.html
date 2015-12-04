@@ -1,0 +1,170 @@
+<div id="main">
+	<section id="search">
+		<h1>쿠폰 검색</h1>
+		<form id="coupon_search" name="coupon_search" action="#" method="get">
+			<label for="search_date">기간</label>
+			<select id="search_date" name="search_date">
+				<option value="buyable">구매가능</option>
+				<option value="all">전체</option>
+				<option value="past">지난쿠폰</option>
+			</select>
+			<label for="search_location">지역</label>
+			<select id="search_location" name="search_location">
+				<option value="">전체</option>
+				<option>강남</option>
+				<option>압구정</option>
+				<option>논현</option>
+				<option>홍대</option>
+				<option>신촌</option>
+				<option>기타</option>
+			</select>
+			<label for="search_keyword">키워드</label>
+			<input type="text" id="search_keyword" name="search_keyword">
+			<input type="submit" value="검색">
+		</form>
+	</section>
+	<section>
+		<form id="order" name="list_order_form" action="#" method="get">
+			<label for="list_oder">리스트 정렬순서</label>
+			<select id="list_order" name="list_order">
+				<option value="saleDate.start">최근순</option>
+				<option value="satisfactionAvg">평가순</option>
+				<option value="buyQuantity">판매순</option>
+			</select>
+			<button type="submit">확인</button>
+		</form>
+	</section>
+	<section id="coupon" class="slide">
+		<h1 class="blind">쿠폰 리스트</h1>
+		<div id="time"><time datetime="2015-03-30">2015.08.01</time></div>
+		<div class="coupon_list">
+			<!-- 쿠폰 목록 출력 영역 -->
+
+		</div>
+	</section>
+	<div id="coupon_control">
+		<button type="button" class="btn_pre">이전</button>
+		<button type="button" class="btn_next">다음</button>
+	</div>
+</div>		
+
+
+<script type="text/x-jquery-tmpl" id="tmpl_coupon_list">
+
+<article class="preview act p2" data-couponid="{%= _id %}" tabindex="0">
+	<h1>{%= couponName %}</h1>
+	<img class="list_img" src="image/{%= image.main.file %}" 
+		alt="{%= image.main.desc %}">
+	<img class="detail_img" src="image/{%= image.detail.file %}"
+		alt="{%= image.detail.desc %}">
+	<section class="content">
+		<h1>{%= couponName %}</h1>
+		<p class="note">
+			{%= desc %}
+		</p>
+		<ul class="coupon_info">
+			<li class="cost">정상가격 : <del>15,000원</del></li>
+			<li class="discount">할인가격 : <em>7,500원</em></li>
+			<li class="expire">유효기간 : <time datetime="2012-06-01">2012-07-01</time> 부터 <time datetime="2012-08-31">2012-08-31</time> 까지</li>
+			<li class="remain">잔여수량 : <span>50개</span></li>
+			<li class="term">판매기간 : <span>6월 30 까지</span></li>
+		</ul>
+		<a href="coupon_buy.html" class="buy">구매하기</a>
+	</section>
+
+	<button type="button" class="btn_add_cart">관심쿠폰등록</button>
+	<button type="button" class="btn_close_coupon_detail">쿠폰 상세 보기 닫기</button>
+</article>
+</script>
+
+<script type="text/x-jquery-tmpl" id="tmpl_coupon_detail">
+<!-- 쿠폰 상세정보 출력 영역 -->
+
+<div class="coupon_tab">
+	<section class="gallery">
+		<h1 tabindex="0">갤러리</h1>
+		<div class="gallery_viewport">
+			<!-- 동영상 재생 영역 -->
+
+		</div>
+		<article>
+			<h1>포토 리스트</h1>
+			<ul class="photo_list">
+				<li><a href="image/photo/coupon_02_0.jpg" title=""><img src="image/photo/coupon_02_0.jpg" alt=""> </a></li>
+				<li><a href="image/photo/coupon_02_1.jpg" title=""><img src="image/photo/coupon_02_1.jpg" alt=""> </a></li>
+				<li><a href="image/photo/coupon_02_2.jpg" title=""><img src="image/photo/coupon_02_2.jpg" alt=""> </a></li>
+				<li><a href="image/photo/coupon_02_3.jpg" title=""><img src="image/photo/coupon_02_3.jpg" alt=""> </a></li>
+			</ul>
+			<div class="big_photo">
+				<img src="image/photo/coupon_sample.png" width="300" height="250" alt="">
+			</div>
+		</article>
+	</section>
+	<section class="reply tab_off">
+		<h1 tabindex="0">쿠폰 후기 및 평점</h1>
+		<ul>
+			<li>
+				<article>
+					<span>★★★★★</span>
+					<p>정말이예요. 와플이 너무 부드러워요.</p>
+					<footer>
+						<img src="image/member/seulbinim@gmail.com.jpg" alt=""> <span>김데레사</span>
+						<time datetime="2013-01-14">2013년 1월 14일</time>
+					</footer>
+				</article>
+			</li>
+			<li>
+				<article>
+					<span>★★★★★</span>
+					<p>여자친구와 데이트 장소로 딱 좋아요 분위기도 굿~ 맛도 굿~</p>
+					<footer>
+						<img src="image/member/uzoolove@gmail.com.jpg" alt=""> <span>정길용</span>
+						<time datetime="2012-012-20">2012년 12월 20일</time>
+					</footer>
+				</article>
+			</li>
+			<li>
+				<article>
+					<span>★★★★★</span>
+					<p>일산에 이런 맛집이 있다니. 앞으로도 다시 와플먹으러 와야겠어요.</p>
+					<footer>
+						<img src="image/member/test.jpg" alt=""> <span>나인환</span>
+						<time datetime="20123-02-28">2013년2월 28일</time>
+					</footer>
+				</article>
+			</li>
+		</ul>
+	</section>
+	<section class="map tab_off">
+		<h1 tabindex="0">찾아오시는 길</h1>
+		<div class="map_div">Loading....</div>
+		<article>
+			<h1>
+				<span class="company_name">커피통 와플</span>
+			</h1>
+			<div>
+				<dl>
+					<dt>영업점 소개</dt>
+					<dd>
+						<img src="image/shop/shop_02.jpg" alt="cooffee tong">
+						<p class="company_desc">일산에 위치한 분위기 좋은 카페입니다.</p>
+					</dd>
+					<dt>찾아 오시는길</dt>
+					<dd>
+						경기도 고양시 일산동구 정발산동 1178번지
+						<button type="button">내 위치 보기</button>
+					</dd>
+					<dt>영업시간</dt>
+					<dd>9:00 부터 23:00 까지</dd>
+					<dt>문의전화 / e-mail</dt>
+					<dd>
+						전화 : <a href="tel:02-123-1234">02-123-1234</a> / e-mail : <a href="mailto:abc@cbc.com">abc@cbc.com</a>
+					</dd>
+				</dl>
+			</div>
+		</article>
+	</section>
+</div>						
+<!-- 쿠폰 구매폼 출력 영역 -->
+
+</scrpit>
