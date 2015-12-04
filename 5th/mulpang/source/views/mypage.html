@@ -1,0 +1,63 @@
+<div id="main">			
+	<section id="join_section">
+		<h1>회원정보 수정</h1> 
+		<form name="join_form">
+			
+			<input type="hidden" name="cmd" value="updateMember">
+			<input type="hidden" name="tmpFileName">
+			
+			<img src="image/${profileImage}" alt="${loginId} 회원 이미지">
+			<table id="join_form_table">
+				<tr>
+					<th></th>
+					<td>${loginId}</td>
+				</tr>
+				<tr>
+					<th><label for="profile">프로필 이미지</label></th>
+					<td>
+						<input type="file" accept="*.jpg" id="profile">
+						<progress>0%</progress>
+					</td>
+				</tr>
+				<tr>
+					<th><label for="password_old">비밀번호</label></th>
+					<td><input type="password" id="password_old" name="oldPassword" required></td>
+				</tr>
+				<tr>
+					<th><label for="password">새 비밀번호</label></th>
+					<td><input type="password" id="password" name="password"></td>
+				</tr>
+				<tr>
+					<th><label for="password2">새 비밀번호확인</label></th>
+					<td><input type="password" id="password2"></td>
+				</tr>
+			</table>
+			<div class="btn_div"><button type="submit">정보 수정</button></div>
+		</form>
+	</section>
+	<section id="my_coupon_section">
+		<h1>내가 구매한 쿠폰 리스트</h1>    
+		<!-- 구매한 쿠폰 목록 출력 영역 -->
+
+	</section>
+</div>
+
+<script type="text/x-jquery-tmpl" id="tmpl_mycoupon">
+	<article class="coupon_preview">
+		<h1 tabindex="0"><a href="/" title="쿠폰 상세보기로">{%= couponName %}</a></h1>
+		<img class="coupon_list_image" src="image/{%= image.main.file %}" alt="{%= image.main.desc %}">
+		<time datetime="{%= Util.dateToString('-', regDate) %}">{%= Util.dateToString('.', regDate) %}</time>
+		{%if epilogue%}
+			<p>{%= epilogue.content %}<p>
+			<p>{%= Util.toStar(epilogue.satisfaction) %}<p>
+		{%else%}
+			<form id="epilogue_form">
+				<input type="hidden" name="couponId" value="{%= _id %}">
+				<input type="hidden" name="cmd" value="insertEpilogue">
+				평가: <input name="satisfaction" type="range" min="1" max="5" value="5" oninput="output.value=this.value"><output name="output">5</output>
+				<textarea name="content" rows="4" cols="27" placeholder="후기를 입력하세요."></textarea><br>
+				<input type="submit" value="작성">
+			</form>
+		{%/if%}
+	</article>
+</script>
